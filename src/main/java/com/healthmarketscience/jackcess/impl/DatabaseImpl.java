@@ -1132,21 +1132,7 @@ public class DatabaseImpl implements Database, DateTimeContext
     throws IOException
   {
     if(tableInfo.isLinked()) {
-
-      if(_linkedDbs == null) {
-        _linkedDbs = new HashMap<String,Database>();
-      }
-
-      String linkedDbName = ((LinkedTableInfo)tableInfo).linkedDbName;
-      String linkedTableName = ((LinkedTableInfo)tableInfo).linkedTableName;
-      Database linkedDb = _linkedDbs.get(linkedDbName);
-      if(linkedDb == null) {
-        linkedDb = getLinkResolver().resolveLinkedDatabase(this, linkedDbName);
-        _linkedDbs.put(linkedDbName, linkedDb);
-      }
-
-      return ((DatabaseImpl)linkedDb).getTable(linkedTableName,
-                                               includeSystemTables);
+      return null;
     }
 
     return readTable(tableInfo.tableName, tableInfo.pageNumber,
